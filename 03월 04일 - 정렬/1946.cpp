@@ -5,8 +5,8 @@
 using namespace std;
 
 struct applicant {
-	int inter;  //인터뷰점수
 	int doc;	//서류점수
+	int inter;  //인터뷰점수
 };
 
 bool cmp(const applicant& a, const applicant& b) {

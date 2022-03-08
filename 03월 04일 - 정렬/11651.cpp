@@ -1,26 +1,20 @@
 #include<iostream>
-#include<stdio.h>
 #include<vector>
+#include<utility>
 #include<algorithm>
 using namespace std;
 
-struct coord {
-	int x, y;
-};
-
-bool cmp(const coord& a, const coord& b) {
-	if (a.y == b.y) return a.x < b.x;
-	return a.y < b.y;
+bool cmp(const pair<int, int>& a, const pair<int, int>& b) {
+	if (a.second == b.second) return a.first < b.first;
+	return a.second < b.second;
 }
 
 int main() {
-	int n, x, y;
-	scanf_s("%d", &n);
-	vector<coord> arr(n);
-	for (int i = 0; i < n; i++)  scanf_s("%d %d",&arr[i].x,&arr[i].y);
-
+	int n;
+	cin >> n;
+	vector<pair<int, int>> arr(n);
+	for (int i = 0; i < n; i++) cin >> arr[i].first >> arr[i].second;
 	sort(arr.begin(), arr.end(), cmp);
-	
-	for (int i = 0; i < n; i++)  printf_s("%d %d\n", arr[i].x, arr[i].y);
+	for (int i = 0; i < n; i++) cout << arr[i].first << " " << arr[i].second << "\n";
 	return 0;
 }

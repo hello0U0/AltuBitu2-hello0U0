@@ -14,7 +14,7 @@ int main() {
 	
 	for (int i = 0; i < n; i++) {
 		int tip = arr[i] - i;
-		if (tip < 0)tip = 0;
+		if (tip < 0) break;
 		max += tip;
 	}
 
