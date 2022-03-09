@@ -1,6 +1,10 @@
 #include<iostream>
+using namespace std;
 
 int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 	int h, m, s, q, t, c, clock;
 	cin >> h >> m >> s >> q;
 	//초단위 시간으로 변경
@@ -8,20 +12,24 @@ int main() {
 
 	for (int i = 0; i < q; i++) {
 		cin>>t;
-		if (t == 3) {	//시간 출력
+		switch (t) {
+		case 1:
+			cin >> c;
+			clock += c;
+			if (clock >= 86400) clock %= 86400;
+			break;
+		case 2:
+			cin >> c;
+			clock -= c;
+			if (clock <= -86400) clock%= 86400;
+			if (clock < 0) clock += 86400;
+			break;
+		default:
 			h = clock / 3600;
 			m = (clock % 3600) / 60;
 			s = clock % 60;
 			cout << h << " " << m << " " << s << "\n";
-		}
-		else {
-			cin >> c;
-			//시간을 앞이나 뒤로 돌리기
-			if (t == 2) clock -= c;	
-			else clock += c;
-			//24시간(0~86400)초 사이로 범위 맞추기
-			if (clock >= 86400 || clock <= -86400)clock %= 86400;
-			if (clock < 0) clock += 86400;
+			break;
 		}
 	}
 

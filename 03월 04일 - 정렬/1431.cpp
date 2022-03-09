@@ -15,13 +15,10 @@ bool cmp(const string a, string b) {
 	int a_size = a.size(), b_size = b.size();
 	//A와 B의 길이가 다르다면, 짧은 것이 먼저 온다
 	if (a_size != b_size)	return a_size < b_size;
-	//A의 모든 자리수의 합과 B의 모든 자리수의 합을 비교해서 작은 것부터 온다
+	//A의 모든 자리수의 합과 B의 모든 자리수의 합을 비교해서 작은 것부터 온다. 합이 같다면 사전순으로 온다.
 	int b_count = calNum(b, b_size);
 	int a_count = calNum(a, a_size);
-	if (b_count != a_count) return b_count > a_count;
-
-	if (a > b) return false;
-	return true;
+	return b_count == a_count ? a < b : b_count > a_count;
 }
 
 int main() {
