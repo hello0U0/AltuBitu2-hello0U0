@@ -21,7 +21,7 @@ int main() {
 		//m보다 작은 길이는 넘어간다.
 		if (s.size() < m) continue;
 		//단어와 단어가 나온 개수를 저장한다.
-		voca_count[s] = (voca_count.find(s) != voca_count.end()) ? voca_count[s] + 1 : 1;
+		voca_count[s]++;
 	}
 	//단어장에 저장한다.
 	for (auto iter : voca_count) {

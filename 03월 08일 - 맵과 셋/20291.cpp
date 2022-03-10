@@ -12,9 +12,9 @@ int main() {
 
 		//파일명에서 확장자만 추출
 		size_t dot_i = s.find(".");
-		s = s.substr(dot_i + 1, s.size() - 1 - dot_i);
+		s = s.substr(dot_i + 1, s.size());
 		//기존에 받았으면 해당 확장자 개수 증가, 새로우면 확장자 개수 초기화
-		ext_count[s] = (ext_count.find(s) != ext_count.end()) ? ext_count[s] + 1 : 1;
+		ext_count[s]++;
 	}
 	for (auto iter : ext_count) {
 		cout << iter.first << " " << iter.second << '\n';

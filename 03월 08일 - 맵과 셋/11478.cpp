@@ -1,19 +1,21 @@
 #include<iostream>
+#include<string>
 #include<set>
 using namespace std;
 
 int main() {
-	string s;
+	string s, now;
 	set<string> spart;
+
 	cin >> s;
 	int s_size = s.size();
-	
-	for (int i = 1; i < s_size; i++) {	//s 전체 문자열은 하나밖에 없으므로 계산에서 제외
-		//s에서 i 길이의 부분수열을 set에 저장
-		for (int j = 0; j <= s_size-i; j++) {
-			spart.insert(s.substr(j, i));
+	for (int i = 0; i < s_size; i++) {
+		now.clear();
+		//i번째부터 한글자씩 추가하여 set에 넣는다.
+		for (int j = i; j < s_size; j++) {
+			now += s[j];
+			spart.insert(now);
 		}
 	}
-
-	cout << spart.size() + 1;
+	cout << spart.size();
 }

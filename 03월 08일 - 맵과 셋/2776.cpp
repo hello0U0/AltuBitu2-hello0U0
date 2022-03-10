@@ -1,26 +1,27 @@
 #include<iostream>
-#include<set>
+#include<unordered_map>
 using namespace std;
 
 int main() {
+	cin.tie(NULL);
+	cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
 	int t;
 	cin >> t;
-	for (int test_case = 0; test_case < t; test_case++) {
-		int n,m;
-		set<int> note;
-		set<int>::iterator iter;
+	while (t--) {
+		int n, m;
+		unordered_map<int, int> note1;
 		//수첩 1 입력
 		cin >> n;
-		while(n--) {
+		while (n--) {
 			cin >> m;
-			note.insert(m);
+			note1[m] = 1;
 		}
 		//수첩 2 입력 및 출력
 		cin >> n;
-		while(n--) {
+		while (n--) {
 			cin >> m;
-			set<int>::iterator iter = note.find(m);
-			cout << (iter != note.end()) << '\n';
+			cout << note1[m] << '\n';
 		}
 	}
 	return 0;

@@ -19,7 +19,7 @@ int main() {
 			string name, kind;
 			cin >> name >> kind;
 		//종류별 옷 개수 저장하기
-			name_kind[kind] = (name_kind.find(kind) != name_kind.end()) ? name_kind[kind] + 1 : 1;
+			name_kind[kind]++;
 		}
 		//각 종류별 옷 개수 +1을 곱한다.(안입는것까지 고려)
 		for (auto iter:name_kind) {

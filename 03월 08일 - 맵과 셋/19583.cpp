@@ -18,13 +18,11 @@ int main() {
 		}// 총회가 끝난 때부터 스트리밍 종료되기전까지
 		else if (time >= end_time && time <= close_time) {
 			// 채팅하면 map에 기록되어있을경우에만 체크
-			if (name_check.find(name) != name_check.end()) {
+			if (name_check.find(name) != name_check.end() && name_check[name] != 1) {
 				name_check[name] = 1;
+				count++;
 			}
 		}
-	}//map에서 체크된 사람들만 계산
-	for (auto iter : name_check) {
-		if (iter.second ) count++;
 	}
 
 	cout << count;
