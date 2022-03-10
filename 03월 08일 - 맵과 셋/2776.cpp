@@ -1,5 +1,5 @@
 #include<iostream>
-#include<unordered_map>
+#include<unordered_set>
 using namespace std;
 
 int main() {
@@ -10,18 +10,18 @@ int main() {
 	cin >> t;
 	while (t--) {
 		int n, m;
-		unordered_map<int, int> note1;
+		unordered_set<int> note1;
 		//수첩 1 입력
 		cin >> n;
 		while (n--) {
 			cin >> m;
-			note1[m] = 1;
+			note1.insert(m);
 		}
 		//수첩 2 입력 및 출력
 		cin >> n;
 		while (n--) {
 			cin >> m;
-			cout << note1[m] << '\n';
+			cout << (note1.find(m) != note1.end()) << '\n';
 		}
 	}
 	return 0;
