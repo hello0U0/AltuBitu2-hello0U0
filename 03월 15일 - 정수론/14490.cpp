@@ -11,13 +11,6 @@ int main() {
 	cin.ignore(256, ':');
 	cin >> m;
 
-	if (n > m) {
-		gcd = gcdR(n, m);
-		cout << n / gcd << ":" << m / gcd;
-	}
-	else {
-		gcd = gcdR(m, n);
-		cout << n / gcd << ":" << m / gcd;
-	}
-	return 0;
+	gcd = gcdR(max(n,m),min(n,m));
+	cout << n / gcd << ":" << m / gcd;
 }
