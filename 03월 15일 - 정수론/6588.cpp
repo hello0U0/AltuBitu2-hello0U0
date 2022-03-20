@@ -1,6 +1,6 @@
 ﻿#include<iostream>
 #include<vector>
-#define max 1000001
+#define MAX 1000001
 using namespace std;
 
 //1~1000000까지 소수인지 판단
@@ -8,7 +8,7 @@ void calPrime(vector<bool>& prime) {
 	prime[0] = prime[1] = false;
 	for (int i = 2; i <= 1000; i++) {
 		if (!prime[i]) continue;
-		for (int j = i * i; j < max; j += i) {
+		for (int j = i * i; j < MAX; j += i) {
 			if (prime[j]) prime[j] = false;
 		}
 	}
@@ -18,7 +18,7 @@ int main() {
 	cin.tie(NULL);
 	cout.tie(NULL);
 	ios_base::sync_with_stdio(false);
-	vector<bool> prime(max, true);
+	vector<bool> prime(MAX, true);
 	calPrime(prime);
 
 	while (1) {

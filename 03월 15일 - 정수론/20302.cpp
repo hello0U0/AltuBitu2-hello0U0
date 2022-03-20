@@ -2,15 +2,15 @@
 #include<vector>
 #include<unordered_map>
 #include<algorithm>
-#define max 1e5+1
+#define MAX 1e5+1
 using namespace std;
 
 //소수를 찾고 소수가 아닌 것들은 어떤 (가장작은) 소수의 배수인지 구한다.
 vector<int> calPrime() {
-	vector<int> prime(max, 1);
-	for (int i = 2; i * i < max; i++) {
+	vector<int> prime(MAX, 1);
+	for (int i = 2; i * i < MAX; i++) {
 		if (prime[i] != 1) continue;
-		for (int j = i * i; j < max; j += i) {
+		for (int j = i * i; j < MAX; j += i) {
 			if (prime[j] == 1) prime[j] = i;
 		}
 	}
