@@ -1,4 +1,5 @@
-﻿#include<iostream>
+﻿//2503 숫자야구
+#include<iostream>
 #include<string>
 #include<vector>
 #include<algorithm>

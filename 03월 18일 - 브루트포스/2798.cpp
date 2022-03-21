@@ -1,4 +1,5 @@
-﻿#include<iostream>
+﻿//2798 블랙잭
+#include<iostream>
 #include<vector>
 #include<algorithm>
 using namespace std;

@@ -1,4 +1,5 @@
-﻿#include<iostream>
+﻿//1759 암호만들기
+#include<iostream>
 #include<set>
 #include<string>
 using namespace std;

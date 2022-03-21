@@ -1,4 +1,5 @@
-﻿#include<iostream>
+﻿//기숙사 바닥
+#include<iostream>
 #include<cmath>
 using namespace std;
 

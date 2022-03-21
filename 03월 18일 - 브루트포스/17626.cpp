@@ -1,4 +1,5 @@
-﻿#include<iostream>
+﻿//17626 Four squares
+#include<iostream>
 #include<cmath>
 #define MAX_TIME 4
 using namespace std;
