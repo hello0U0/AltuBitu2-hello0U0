@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include<set>
+#include<bitset>
 using namespace std;
 
 int main() {
@@ -10,36 +11,31 @@ int main() {
 	ios_base::sync_with_stdio(false);
 	string cals;
 	int m, cali;
-	set<int> s;
-	set<int> s_all;		//all 연산 초기화 셋
-	for (int i = 1; i <= 20; i++) s_all.insert(i);
-
+	bitset<24> s;
 	cin >> m;
 	while (m--) {
 		cin >> cals;
 		if (cals == "all") {
-			s = s_all;
+			s.set();
 			continue;
 		}
 		else if (cals == "empty") {
-			s.clear();
+			s.reset();
 			continue;
 		}
-
 		cin >> cali;
 		if (cals == "add") {
-			s.insert(cali);
+			s[cali] = 1;
 		}
 		else if (cals == "remove") {
-			auto iter = s.find(cali);
-			if (iter != s.end()) s.erase(iter);
+			s[cali] = 0;
 		}
 		else if (cals == "check") {
-			cout << (s.find(cali) == s.end() ? 0 : 1) << '\n';
+			cout << s[cali] << '\n';
 		}
-		else if (cals == "toggle") {
-			if (s.find(cali) == s.end()) s.insert(cali);
-			else s.erase(cali);
+		else {
+			s[cali] = !s[cali];
 		}
+
 	}
 }
