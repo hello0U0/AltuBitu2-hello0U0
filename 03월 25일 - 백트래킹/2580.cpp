@@ -30,10 +30,11 @@ int main() {
 			input_sudo.push_back(i);
 		}
 	}
-	int i, j, pprev = 0, prev = 0;
+	int i = 0, j, pprev = 0;
 	do {//xy위치에 input_sudo 값을 넣는다
-		if (prev != 0 && pprev != input_sudo[prev - 1])prev--;
-		for (i = prev; i < xy.size() - 1; i++) {
+		//틀린 위치 앞쪽이 같은 배열이면 넘어간다.
+		if (i != 0 && pprev != input_sudo[i - 1])i--;
+		for (; i < xy.size() - 1; i++) {
 			int x = xy[i].first, y = xy[i].second, num = input_sudo[i];
 			//가로줄 체크
 			for (j = 0; j < 9; j++) {
@@ -58,9 +59,11 @@ int main() {
 			sudoku[xy.back().first][xy.back().second] = input_sudo.back();
 			break;
 		}
+		//틀린거 이후는 어떤 조합이든 모두 틀리기 때문에 넘어간다.
 		sort(input_sudo.begin() + (i + 1), input_sudo.end(), greater<>());
-		prev = i;
-		if(prev) pprev = input_sudo[i - 1];
+		//초기화
+		sudoku[xy[i].first][xy[i].second] = 0;
+		if (i > 0) pprev = input_sudo[i - 1];
 	} while (next_permutation(input_sudo.begin(), input_sudo.end()));
 
 	for (int i = 0; i < 9; i++) {
