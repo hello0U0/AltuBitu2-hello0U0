@@ -3,11 +3,13 @@
 #include<algorithm>
 using namespace std;
 
+const int MAX = 2e9 + 1;
+
 int main() {
 	int n, ts, p;
 	cin >> n >> ts >> p;
 	vector<int> score(n+1);
-	score[0] = 2000000001;
+	score[0] = MAX;
 	for (int i = 1; i < n+1; i++) {
 		cin >> score[i];
 	}

@@ -4,7 +4,7 @@
 #include<algorithm>
 using namespace std;
 
-const int MAX = 10000001;
+const int MAX = 1e7+1;
 
 int main() {
 	int n,x;
