@@ -2,39 +2,49 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+
 using namespace std;
 
-const int MAX = 1e7+1;
+const int MAX = 1e7 + 1;
+vector< vector<int> > cost;
+vector<bool> use;
+int n, min_cost;
+int nowallcost;
+
+int baTr(int time, int prev_town) {
+	int prevtown = prev_town;
+	if (time == n) {
+		if (cost[prevtown][0] == 0) return MAX;
+		return nowallcost + cost[prevtown][0];
+	}
+	for (int i = 1; i < n; i++) {
+		//이미 간 곳이나 가지 못하는 곳이면 넘어간다.
+		if (use[i] || cost[prevtown][i] == 0) continue;
+		int nowcost = cost[prevtown][i];
+		use[i] = 1;
+		nowallcost += nowcost;
+		prevtown = i;
+		min_cost = min(baTr(time + 1, prevtown), min_cost);
+		use[i] = 0;
+		nowallcost -= nowcost;
+		prevtown = prev_town;
+	}
+	return min_cost;
+}
+
 
 int main() {
-	int n,x;
 	cin >> n;
-	vector<vector<int>> cost(n);
+	cost.assign(n, vector<int>(n));
+	use.resize(n);
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			cin >> x;
-			cost[i].push_back(x);
+			cin >> cost[i][j];
 		}
 	}
-	// 외판원이 순회하는 도시 순서 road
-	vector<int> road(n);
-	int mincost = MAX;
-	for (int i = 0; i < n; i++) road[i] = i;
-	//[1->2->3] [2->3->1] [3->1->2]같은 경우는 모두 같은 루트다
-	//따라서 첫번째 숫자를 첫번째 도시로 고정
-	 do {
-		 x = 0;
-		// 순회하는 도시 순서대로 계산
-		for (int i = 0; i < n; i++) {
-			int nowcost = (i!=n-1)?cost[road[i]][road[i+1]]: cost[road[n-1]][road[0]];
-			//길이 없으면 멈추기
-			if (nowcost == 0) {
-				x = MAX;
-				break;
-			}//비용 추가
-			x += nowcost;
-		}
-		mincost = min(mincost, x);
-	} while (next_permutation(road.begin()+1, road.end()));
-	cout << mincost;
+	//0번부터 시작
+	min_cost = MAX;
+	nowallcost = 0;
+	use[0] = 1;
+	cout << baTr(1, 0);
 }
