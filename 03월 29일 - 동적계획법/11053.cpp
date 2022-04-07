@@ -15,13 +15,13 @@ int lis(int n, vector<int> &arr) {                                              
     vector<int> dp(n, 1);                                                                                           //
     int ans = 1;                                                                                                    //
 
-    for (int i = 1; i < n; i++) {                                                                                   //
-        for (int j = 0; j < i; j++) {                                                                               //
-            if (arr[i] > arr[j]) { //증가하는 관계라면                                                              //
-                dp[i] = max(dp[i], dp[j] + 1);                                                                      //
+    for (int i = 1; i < n; i++) {                                                                                   //i+1번째 수까지
+        for (int j = 0; j < i; j++) {                                                                               //처음 숫자부터
+            if (arr[i] > arr[j]) { //증가하는 관계라면                                                              //이전 값보다 증가라면 이전값에 1을 더하고 
+                dp[i] = max(dp[i], dp[j] + 1);                                                                      //현재까지의 최장길이와 이번에 계산한 최장길이중 더 긴 것을 택한다.
             }                                                                                                       //
         }                                                                                                           //
-        ans = max(ans, dp[i]); //최장 길이 갱신                                                                     //
+        ans = max(ans, dp[i]); //최장 길이 갱신                                                                     //최종 답의 최장길이를 계산한다.
     }                                                                                                               //
     return ans;                                                                                                     //
 }                                                                                                                   //
@@ -43,18 +43,18 @@ int lisAdv(int n, vector<int> &arr) {                                           
     vector<int> dp(n + 1, 0); //dp[1]을 갱신하기 위해 dp[0] = 0으로 설정                                            //
     int idx = 0;                                                                                                    //
 
-    for (int i = 0; i < n; i++) {                                                                                   //
+    for (int i = 0; i < n; i++) {                                                                                   //lis 함수와 동일하게 계산하다가
         for (int j = idx; j >= 0; j--) {                                                                            //
             if (arr[i] > dp[j]) { //증가하는 관계라면                                                               //
                 dp[j + 1] = arr[i];                                                                                 //
-                if (j == idx) { //최장 길이 갱신                                                                    //
+                if (j == idx) { //최장 길이 갱신                                                                    //원하는 답까지 계산하면 멈추고
                     idx++;                                                                                          //
                 }                                                                                                   //
                 break;                                                                                              //
             }                                                                                                       //
         }                                                                                                           //
     }                                                                                                               //
-    return idx;                                                                                                     //
+    return idx;                                                                                                     //원하는 답을 반환한다.
 }                                                                                                                   //
 
 /**
@@ -69,11 +69,11 @@ int lisFinal(int n, vector<int> &arr) {                                         
     vector<int> dp;                                                                                                 //
 
     for (int i = 0; i < n; i++) {                                                                                   //
-        int pos = lower_bound(dp.begin(), dp.end(), arr[i]) - dp.begin(); //arr[i] 이상의 값이 처음 나오는 위치     //
-        if (pos == dp.size()) { //arr[i]가 가장 크다면 pos 값이 dp.size()와 같음 -> 최장 길이 갱신                  //
+        int pos = lower_bound(dp.begin(), dp.end(), arr[i]) - dp.begin(); //arr[i] 이상의 값이 처음 나오는 위치     // i번째 수가 있다 하고, i보다 큰 수가 나오는 부분을 확인
+        if (pos == dp.size()) { //arr[i]가 가장 크다면 pos 값이 dp.size()와 같음 -> 최장 길이 갱신                  // 현재 최장부분수열에 더 큰 수가 없으면 현재까지가 최장부분수열이다.
             dp.push_back(arr[i]);                                                                                   //
         }                                                                                                           //
-        dp[pos] = arr[i]; //dp[pos]의 값이 arr[i]이상이므로 더 작은 arr[i]로 덮어 씌우기                            //
+        dp[pos] = arr[i]; //dp[pos]의 값이 arr[i]이상이므로 더 작은 arr[i]로 덮어 씌우기                            // 해당 수가 최장수열에 포함된다.
     }                                                                                                               //
     return dp.size();                                                                                               //
 }                                                                                                                   //

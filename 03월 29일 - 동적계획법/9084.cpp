@@ -6,10 +6,10 @@ using namespace std;                                    //
 int knapsack(int n, int m, vector<int> &coin) {         //
     vector<int> dp(m + 1, 0);                           // 
 
-    dp[0] = 1;                                          // 
-    for (int i = 0; i < n; i++) {                       //
-        for (int j = coin[i]; j <= m; j++) {            //
-            dp[j] += dp[j - coin[i]];                   //
+    dp[0] = 1;                                          // 돈이 없으면 만들 수 있는 동전 종류는 1이다.
+    for (int i = 0; i < n; i++) {                       // i번째 돈을 사용한다면
+        for (int j = coin[i]; j <= m; j++) {            // i번째 돈의 금액부터 목표금액까지
+            dp[j] += dp[j - coin[i]];                   // 해당 돈의 방법수는 i번째 동전 1개와 나머지 금액의 가지수의 합이다.
         }                                               //
     }                                                   //
     return dp[m];                                       //

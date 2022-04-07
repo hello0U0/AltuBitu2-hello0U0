@@ -8,11 +8,11 @@ const int MAX = 10;                                     //
 vector<int> numberOfAllCases() {                        //
     vector<int> dp(MAX + 1, 0);                         //
 
-    dp[0] = dp[1] = 1;                                  //
+    dp[0] = dp[1] = 1;                                  // 1,2의 수는 미리 계산(0은 계산의 편의를 위해 추가
     dp[2] = 2;                                          //
-    for (int i = 3; i <= MAX; i++) {                    //
-        dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];      //
-    }                                                   //
+    for (int i = 3; i <= MAX; i++) {                    // 3 이상의 수는
+        dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];      // i-3의 수에 3을 더하거나, i-2의 수에 2를 더하거나, i-1의 수에 1을 더하는 경우다
+    }                                                   // 따라서 각 수를 나타내는 방법 수를 모두 더하면 된다.
     return dp;                                          //
 }
 
@@ -33,7 +33,7 @@ int main() {                                            //
     int t, n;                                           //
 
     //미리 dp 채우기
-    vector<int> dp = numberOfAllCases();                //
+    vector<int> dp = numberOfAllCases();                // 1 ~ 10의 수를 1,2,3의 합으로 나타내는 방법 계산
 
     //입력
     cin >> t;                                           //

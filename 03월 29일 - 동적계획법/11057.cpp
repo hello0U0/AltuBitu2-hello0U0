@@ -17,8 +17,8 @@ int sumLastCnt(vector<int> &arr) {                        //
 int upNumberCnt(int n) {                                  //
     vector<vector<int>> dp(n + 1, vector<int>(10, 1));    //
 
-    for (int i = 2; i <= n; i++) {                        //
-        for (int j = 1; j < 10; j++) {                    //
+    for (int i = 2; i <= n; i++) {                        //i번째 수까지
+        for (int j = 1; j < 10; j++) {                    //j번쩨
             dp[i][j] = dp[i][j - 1] + dp[i - 1][j];       //
             dp[i][j] %= MOD;                              //
         }                                                 //
