@@ -8,8 +8,8 @@ const int MOD = 10007;                                                          
 int sumLastCnt(vector<int> &arr) {                        //
     int ans = 0;                                          //
     for (int i = 0; i < arr.size(); i++) {                //
-        ans += arr[i];                                    //
-        ans %= MOD;                                       //
+        ans += arr[i];                                    //오르막 수를 모두 더하고
+        ans %= MOD;                                       //10007로 나눈다.
     }                                                     //
     return ans;                                           //
 }                                                         //
@@ -17,10 +17,10 @@ int sumLastCnt(vector<int> &arr) {                        //
 int upNumberCnt(int n) {                                  //
     vector<vector<int>> dp(n + 1, vector<int>(10, 1));    //
 
-    for (int i = 2; i <= n; i++) {                        //i번째 수까지
-        for (int j = 1; j < 10; j++) {                    //j번쩨
-            dp[i][j] = dp[i][j - 1] + dp[i - 1][j];       //
-            dp[i][j] %= MOD;                              //
+    for (int i = 2; i <= n; i++) {                        // i길이의 오르막수에서
+        for (int j = 1; j < 10; j++) {                    // 일의 자리가 j까지의 오르막 수는
+            dp[i][j] = dp[i][j - 1] + dp[i - 1][j];       // i-1 길이의 j보다 작거나 같은 수의 오르막 수 다음 j가 오는 것과, i 길이 이면서 j보다 작은 수로만 이루어진 오르막 수의 합이다.
+            dp[i][j] %= MOD;                              // 
         }                                                 //
     }                                                     //
     return sumLastCnt(dp[n]);                             //
