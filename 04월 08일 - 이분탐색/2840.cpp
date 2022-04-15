@@ -20,7 +20,7 @@ int main() {
 		i = (i - xi) % n;
 		if (i < 0) i += n;
 		//빈칸이 아니면 같은 문자여야한다.
-		if (cycle[i] != 63) {
+		if (cycle[i] != '?') {
 			if (cycle[i] != xch) i = -1;
 			continue;
 		}
