@@ -41,7 +41,8 @@ int main() {
 	//출력
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= n; j++) {
-			cout << (i == j ? "-" : to_string(direct[i][j].first)) << " ";
+			if (i == j) cout << "- ";
+			else cout << direct[i][j].first << ' ';
 		}
 		cout << '\n';
 	}

@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <algorithm>
 using namespace std;
 typedef pair<int, int> ci;
 const int INF = 2e7 + 1;
@@ -51,7 +52,7 @@ int solution(int n, int s, int a, int b, vector<vector<int>> fares) {
     for (int i = 1; i <= n; i++) {
         int nowpath = spath[i] + apath[i] + bpath[i];
         //최소값을 기록
-        if (nowpath < answer) answer = nowpath;
+        answer = min(nowpath, answer);
     }
 
     return answer;

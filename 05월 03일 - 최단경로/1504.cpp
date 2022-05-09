@@ -1,9 +1,10 @@
 ﻿//1504 특정한 최단 경로
 #include<iostream>
 #include<queue>
+#include<algorithm>
 using namespace std;
 typedef pair<int, int> ci;
-const int INF = 8e5 + 1;
+const int INF = 24e5 + 1;
 
 vector<int> dijkstra(const int& start, const int& n, vector<vector<ci>>& direct) {
 	vector<int> dist(n + 1, INF);	//각 정점까지의 최단경로
@@ -32,26 +33,23 @@ vector<int> dijkstra(const int& start, const int& n, vector<vector<ci>>& direct)
 	}
 	return dist;
 }
-int calMinTime(const int &n,const int &v1,const int &v2, vector<vector<ci>> &direct) {
+int calMinTime(const int& n, const int& v1, const int& v2, vector<vector<ci>>& direct) {
+	int ans1 = 0;	//1 -> v1 -> v2 -> n
+	int ans2 = 0;	//1 -> v2 -> v1 -> n
 	vector<int> path = dijkstra(1, n, direct);
-	int one_v1 = path[v1];	//1->v1
-	int one_v2 = path[v2];	//1->v2
+	ans1 += path[v1];
+	ans2 += path[v2];
 	path = dijkstra(v1, n, direct);
-	int v1_v2 = path[v2];	//v2->v1 && v1->v2
-	//v1-v2길이 없으면 길이 없는 것
-	if (v1_v2 == INF) return -1;
+	ans1 += path[v2];
+	ans2 += path[v2];
 	path = dijkstra(n, n, direct);
-	int v1_n = path[v1];	//v1->n
-	int v2_n = path[v2];	//v2->n
-	int ans1 = one_v1 + v1_v2 + v2_n;	//1 -> v1 -> v2 -> n
-	int ans2 = one_v2 + v1_v2 + v1_n;	//1 -> v2 -> v1 -> n
+	ans1 += path[v2];
+	ans2 += path[v1];
 	//경로가 없는 경우 제외
-	int ansinf = 3 * INF;
-	if (one_v1 == INF || v2_n == INF) ans1 = ansinf;
-	if (one_v2 == INF || v1_n == INF) ans2 = ansinf;
-	if (ans1 == ansinf && ans2 == ansinf) return - 1;
+	ans1 = min(ans1, ans2);
+	if (ans1 >= INF) ans1 = -1;
 	//더 짧은 것을 결정
-	return ans1 < ans2 ? ans1 : ans2;
+	return ans1;
 }
 
 int main() {
